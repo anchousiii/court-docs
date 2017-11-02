@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-export default class Participants extends Component{
+export default class AllParticipants extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -11,7 +12,7 @@ export default class Participants extends Component{
 
     componentDidMount() {
         this.setState({
-            loading: false
+            loading: true
         })
         fetch('https://api.backendless.com/51755EE6-B7E8-95DE-FF49-2B7776E58C00/D98F4083-FE53-95A0-FFA1-C38959E80100/data/participant')
             .then(response => response.json())
@@ -40,7 +41,7 @@ export default class Participants extends Component{
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Participant</th>
+                            <th>Name</th>
                             <th>Role</th>
                             <th>Address</th>
                             <th>Phone</th>
@@ -50,14 +51,19 @@ export default class Participants extends Component{
                         {
 
                             participants.map(function(x,i) {
+                                var objectPath = '/participants/' + x.objectId;
                                 return (
-                                    <tr key={i}>
-                                        <td>{countParticipants++}</td>
-                                        <td>{x.name}</td>
-                                        <td>{x.type}</td>
-                                        <td>{x.address}</td>
-                                        <td>{x.phone}</td>
-                                    </tr>
+
+                                        <tr key={i}>
+
+                                            <td>{countParticipants++}</td>
+                                            <td><Link to={objectPath}>{x.name}</Link></td>
+                                            <td>{x.type}</td>
+                                            <td>{x.address}</td>
+                                            <td>{x.phone}</td>
+
+                                        </tr>
+
                                 );
                             })
                         }

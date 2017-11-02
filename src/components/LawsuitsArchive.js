@@ -11,7 +11,7 @@ export default class LawsuitsArchive extends Component {
 
     componentDidMount() {
         this.setState({
-            loading: false
+            loading: true
         })
         fetch('https://api.backendless.com/51755EE6-B7E8-95DE-FF49-2B7776E58C00/D98F4083-FE53-95A0-FFA1-C38959E80100/data/lawsuit?loadRelations=document_id')
             .then(response => response.json())

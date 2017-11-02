@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import Home from '../components/Home'
 import Documents from '../components/Documents'
-import Participants from '../components/Participants'
+import Participant from '../components/Participant'
+import AllParticipants from '../components/AllParticipants'
 import LawsuitsArchive from '../components/LawsuitsArchive'
 import NotFound from '../components/NotFound'
 import './App.css'
@@ -14,7 +15,8 @@ class Main extends Component {
                 <Switch>
                     <Route exact path='/' component = {Home} />
                     <Route path='/documents' component = {Documents}/>
-                    <Route path='/participants' component = {Participants}/>
+                    <Route exact path='/participants' component = {AllParticipants}/>
+                    <Route path='/participants/:id' component = {Participant}/>
                     <Route path='/lawsuits-archive' component = {LawsuitsArchive}/>
                     <Route path='*' component = {NotFound}/>
                 </Switch>
