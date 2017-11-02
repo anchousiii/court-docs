@@ -18,20 +18,26 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     module: { //Обновлено
-        loaders: [ //добавили babel-loader
+        loaders: [
             {
-                loader: 'babel-loader',
+                test: /\.js$/,
+                loader: "babel-loader",
                 include: [
                     path.resolve(__dirname, "src"),
                 ],
-                test: /\.js$/,
                 options: {
                     plugins:[
                         'react-hot-loader/babel'
                     ]
                 }
 
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
             }
+
         ]
+
     }
 }
