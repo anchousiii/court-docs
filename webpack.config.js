@@ -2,6 +2,11 @@ var path = require('path')
 var webpack = require('webpack')
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        hot: true
+    },
     entry: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
@@ -17,12 +22,7 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
-    module: {
-        devServer: {
-            historyApiFallback: true,
-            contentBase: './',
-            hot: true
-        },
+    module: { //Обновлено
         loaders: [
             {
                 test: /\.js$/,
