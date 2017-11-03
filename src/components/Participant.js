@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import imgLoading from '../img/loading.gif'
 
 export default class Participant extends Component {
     constructor(props) {
@@ -28,9 +29,6 @@ export default class Participant extends Component {
                 })
 
             )
-
-
-
     }
 
     render() {
@@ -41,7 +39,7 @@ export default class Participant extends Component {
             loading
         } = this.state
         return (loading)
-            ? <div>Loading Participant...</div>
+            ? <div>Loading Participant...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : <div>
                 <h4>Court Participant <b>{participant.name}</b></h4>
                 <div className="row">

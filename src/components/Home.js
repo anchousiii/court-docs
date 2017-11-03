@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import imgLoading from '../img/loading.gif'
 
 export default class Home extends Component {
     constructor(props){
@@ -32,7 +33,7 @@ export default class Home extends Component {
             loading
         } = this.state
         return (loading)
-            ? <div>Loading Lawsuits...</div>
+            ? <div>Loading Lawsuits...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : (!lawsuits.length)
                 ? <div>No lawsuits</div>
                 : <div>

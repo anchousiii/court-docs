@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import imgLoading from '../img/loading.gif'
 
 export default class Document extends Component {
     constructor(props) {
@@ -26,9 +27,6 @@ export default class Document extends Component {
                 })
 
             )
-
-
-
     }
 
     render() {
@@ -38,7 +36,7 @@ export default class Document extends Component {
             loading
         } = this.state
         return (loading)
-            ? <div>Loading Document...</div>
+            ? <div>Loading Document...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : <div>
                 <h4>Court Document <b>{document.name}</b></h4>
                 <div className="row">

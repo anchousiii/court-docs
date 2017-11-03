@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import imgLoading from '../img/loading.gif'
 
 
 export default class Documents extends Component{
@@ -33,7 +34,7 @@ export default class Documents extends Component{
             loading
         } = this.state
         return (loading)
-            ? <div>Loading Documents...</div>
+            ? <div>Loading Documents...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : (!documents.length)
                 ? <div>No documents</div>
                 : <div>

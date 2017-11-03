@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import imgLoading from '../img/loading.gif'
 
 export default class AllParticipants extends Component{
     constructor(props){
@@ -32,7 +33,7 @@ export default class AllParticipants extends Component{
             loading
         } = this.state
         return (loading)
-            ? <div>Loading Participants...</div>
+            ? <div>Loading Participants...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : (!participants.length)
                 ? <div>No participants</div>
                 : <div>

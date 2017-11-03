@@ -19,3 +19,7 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #ddd;
 }
+
+.img-loading {
+  width: 25px;
+}
