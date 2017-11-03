@@ -8,6 +8,7 @@ export default class Participant extends Component {
             participant: {},
             lawsuit: {},
             document: {},
+            schedule: {},
             loading: false
         };
 
@@ -24,11 +25,10 @@ export default class Participant extends Component {
                 this.setState({
                     participant: data,
                     lawsuit: data.lawsuit_id[0],
-                    document: data.lawsuit_id[0].document_id[0],
-                    loading: false
+                    document: data.lawsuit_id[0].document_id[0]
                 })
-
             )
+
     }
 
     render() {
@@ -36,8 +36,20 @@ export default class Participant extends Component {
             participant,
             lawsuit,
             document,
+            schedule,
             loading
         } = this.state
+
+        console.log(typeof lawsuit)
+        console.log(lawsuit)/*
+            .then(response => response.json())
+            .then(data =>
+                this.setState({
+                    schedule: data,
+                    loading: false
+                })
+            )*/
+
         return (loading)
             ? <div>Loading Participant...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : <div>
@@ -86,6 +98,22 @@ export default class Participant extends Component {
                     </div>
                     <div className="col-md-6 col-sm-6">
                         <h4>Schedule</h4>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td><b>State</b></td>
+                                <td>{schedule.type}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Type</b></td>
+                                <td>{lawsuit.type}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Document</b></td>
+                                <td>{document.name}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
