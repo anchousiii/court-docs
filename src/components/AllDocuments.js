@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
 
 export default class Documents extends Component{
     constructor(props){
@@ -36,6 +38,7 @@ export default class Documents extends Component{
                 ? <div>No documents</div>
                 : <div>
                     <h4>List of Documents</h4>
+                    <h5>Click on the document's name for more info</h5>
                     <table>
                         <thead>
                         <tr>
@@ -49,10 +52,11 @@ export default class Documents extends Component{
                         {
 
                             documents.map(function(x,i) {
+                                var objectPath = '/documents/' + x.objectId;
                                 return (
                                     <tr key={i}>
                                         <td>{countDocuments++}</td>
-                                        <td>{x.name}</td>
+                                        <td><Link to={objectPath}>{x.name}</Link></td>
                                         <td>{x.type}</td>
                                         <td>{ (x.base.length===0) ? 'Base Document Itself' : x.base[0].name }</td>
                                     </tr>

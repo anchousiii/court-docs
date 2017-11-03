@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import Home from '../components/Home'
-import Documents from '../components/Documents'
+import AllDocuments from '../components/AllDocuments'
+import Document from "../components/Document";
 import Participant from '../components/Participant'
 import AllParticipants from '../components/AllParticipants'
 import LawsuitsArchive from '../components/LawsuitsArchive'
@@ -14,7 +15,8 @@ class Main extends Component {
             <main>
                 <Switch>
                     <Route exact path='/' component = {Home} />
-                    <Route path='/documents' component = {Documents}/>
+                    <Route exact path='/documents' component = {AllDocuments}/>
+                    <Route path='/documents/:id' component = {Document}/>
                     <Route exact path='/participants' component = {AllParticipants}/>
                     <Route path='/participants/:id' component = {Participant}/>
                     <Route path='/lawsuits-archive' component = {LawsuitsArchive}/>
@@ -33,7 +35,8 @@ class Header extends Component {
                     <div className="container-fluid">
 
                         <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                                <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
@@ -41,7 +44,7 @@ class Header extends Component {
                             <Link to='/' className="navbar-brand">Court Documentation</Link>
                         </div>
 
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div className="collapse navbar-collapse" id="navbar-collapse">
                             <ul className="nav navbar-nav">
                                 <li><Link to='/'>Home</Link></li>
                                 <li><Link to='/documents'>Documents</Link></li>
