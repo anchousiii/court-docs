@@ -36,7 +36,8 @@ export default class AllParticipants extends Component{
             : (!participants.length)
                 ? <div>No participants</div>
                 : <div>
-                    <h4>Lawsuits Participants</h4>
+                    <h4>Court Participants</h4>
+                    <h5>Click on the participant's name for more info</h5>
                     <table>
                         <thead>
                         <tr>
@@ -53,17 +54,13 @@ export default class AllParticipants extends Component{
                             participants.map(function(x,i) {
                                 var objectPath = '/participants/' + x.objectId;
                                 return (
-
                                         <tr key={i}>
-
                                             <td>{countParticipants++}</td>
                                             <td><Link to={objectPath}>{x.name}</Link></td>
                                             <td>{x.type}</td>
                                             <td>{x.address}</td>
                                             <td>{x.phone}</td>
-
                                         </tr>
-
                                 );
                             })
                         }

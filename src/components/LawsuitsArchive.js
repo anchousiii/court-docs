@@ -36,7 +36,7 @@ export default class LawsuitsArchive extends Component {
             : (!lawsuits.length)
                 ? <div>No lawsuits</div>
                 : <div>
-                    <h4>Finished Lawsuits</h4>
+                    <h4>All Lawsuits</h4>
                     <table>
                         <thead>
                         <tr>
@@ -48,18 +48,15 @@ export default class LawsuitsArchive extends Component {
                         </thead>
                         <tbody>
                         {
-                            lawsuits.map(function(x,i) {
-                                    if (x.state==='finished')
-                                        return (
-                                            <tr key={i}>
-                                                <td>{countLawsuits++}</td>
-                                                <td>{x.state}</td>
-                                                <td>{x.type}</td>
-                                                <td>{x.document_id[0].name}</td>
-                                            </tr>
-                                        );
-                                }
-                            )}
+                            lawsuits.map((x,i) =>
+                                <tr key={i}>
+                                    <td>{countLawsuits++}</td>
+                                    <td>{x.state}</td>
+                                    <td>{x.type}</td>
+                                    <td>{x.document_id[0].name}</td>
+                                </tr>
+                            )
+                        }
                         </tbody>
                     </table>
                 </div>
