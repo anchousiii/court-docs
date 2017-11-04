@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import imgLoading from '../img/loading.gif'
 
-export default class Home extends Component {
+export class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -27,7 +28,6 @@ export default class Home extends Component {
     }
 
     render(){
-        var countLawsuits = 1;
         const {
             lawsuits,
             loading
@@ -38,6 +38,7 @@ export default class Home extends Component {
                 ? <div>No lawsuits</div>
                 : <div>
                     <h4>Active Lawsuits</h4>
+                    <h5>Click on the lawsuit's number for more info</h5>
                     <table>
                         <thead>
                         <tr>
@@ -53,7 +54,7 @@ export default class Home extends Component {
                                     if (x.state!=='finished')
                                         return (
                                             <tr key={i}>
-                                                <td>{countLawsuits++}</td>
+                                                <td><Link to={'/lawsuits/' + x.objectId}>{x.number}</Link></td>
                                                 <td>{x.state}</td>
                                                 <td>{x.type}</td>
                                                 <td>{x.document_id[0].name}</td>
@@ -64,6 +65,15 @@ export default class Home extends Component {
                         </tbody>
                     </table>
                 </div>
+    }
+}
 
+export class NotFound extends Component {
+    render() {
+        return (
+            <div>
+                Страница не найдена. Вернуться на <Link to='/'>главную</Link>
+            </div>
+        )
     }
 }
