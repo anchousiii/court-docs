@@ -123,6 +123,7 @@ export class Lawsuit extends Component {
         return (loading)
             ? <div>Loading Lawsuit...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : <div>
+                <div> {'<'} Back to <Link to='/lawsuits-archive'>all lawsuits</Link></div>
                 <h4>Lawsuit <b>#{lawsuit.number}</b></h4>
                 <div className="row">
                     <div className="col-md-6 col-sm-6">
@@ -151,7 +152,7 @@ export class Lawsuit extends Component {
                                     {
                                         participants.map(function(x,i) {
                                             if (x.type === 'judge')
-                                                return <td key={i}> {x.name}</td>
+                                                return <td key={i}> <Link to={'/participants/' + x.objectId}>{x.name}</Link></td>
                                         })
                                     }
                                 </tr>
@@ -160,7 +161,7 @@ export class Lawsuit extends Component {
                                     {
                                         participants.map(function(x,i) {
                                             if (x.type === 'claimant')
-                                                return <td key={i}> {x.name}</td>
+                                                return <td key={i}> <Link to={'/participants/' + x.objectId}>{x.name}</Link></td>
                                         })
                                     }
                                 </tr>
@@ -169,7 +170,7 @@ export class Lawsuit extends Component {
                                     {
                                         participants.map(function(x,i) {
                                             if (x.type === 'respondent')
-                                                return <td key={i}> {x.name}</td>
+                                                return <td key={i}> <Link to={'/participants/' + x.objectId}>{x.name}</Link></td>
                                         })
                                     }
                                 </tr>
@@ -187,7 +188,7 @@ export class Lawsuit extends Component {
                             {
                                 schedule.map(function(x,i) {
                                     var cDate = (new Date(x.process_date))
-                                    var formatDate = cDate.getDate() +'-' + cDate.getMonth() + '-' + cDate.getFullYear() +
+                                    var formatDate = cDate.toLocaleDateString('en-GB') +
                                         ' ' + cDate.getHours() + ':'
                                     cDate.getMinutes() == '0' ? formatDate = formatDate + '00' : formatDate = formatDate + cDate.getMinutes()
                                     return(
