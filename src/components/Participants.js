@@ -114,7 +114,6 @@ export class Participant extends Component {
             participant,
             lawsuit,
             document,
-            schedule,
             loading
         } = this.state
         return (loading)
