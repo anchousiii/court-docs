@@ -107,6 +107,7 @@ export class Document extends Component {
         return (loading)
             ? <div>Loading Document...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : <div>
+                <div>{'<'} Back to <Link to='/documents'>all documents</Link></div>
                 <h4>Court Document <b>{document.name}</b></h4>
                 <div className="row">
                     <div className="col-md-6 col-sm-6">

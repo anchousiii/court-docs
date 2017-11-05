@@ -72,7 +72,7 @@ export class NotFound extends Component {
     render() {
         return (
             <div>
-                Страница не найдена. Вернуться на <Link to='/'>главную</Link>
+                Page not found. Back to <Link to='/'>homepage</Link>
             </div>
         )
     }
