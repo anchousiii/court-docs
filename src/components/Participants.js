@@ -140,7 +140,7 @@ export class Participant extends Component {
                             </tbody>
                         </table>
 
-                        <h4>Lawsuit</h4>
+                        <h4>Lawsuit <Link to={'/lawsuits/' + lawsuit.objectId}>#{lawsuit.number}</Link></h4>
                         <table>
                             <tbody>
                             <tr>
