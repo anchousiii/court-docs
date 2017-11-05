@@ -18,6 +18,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     module: { //Обновлено
+
         loaders: [
             {
                 test: /\.js$/,
@@ -34,7 +35,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
+                loader: 'style-loader!css-loader'
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
@@ -47,7 +48,14 @@ module.exports = {
                         },
                     },
                 ],
+            },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
             }
-        ]
+        ],
+
     }
 }
