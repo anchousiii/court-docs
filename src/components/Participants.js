@@ -10,6 +10,7 @@ export class AllParticipants extends Component{
             loading: false
         }
     }
+
     componentDidMount() {
         this.setState({
             loading: true
@@ -50,7 +51,6 @@ export class AllParticipants extends Component{
                         </thead>
                         <tbody>
                         {
-
                             participants.map(function(x,i) {
                                 return (
                                         <tr key={i}>
@@ -77,48 +77,44 @@ export class Participant extends Component {
             lawsuit: {},
             document: {},
             schedule: [],
-            loading: false,
-
-        };
+            loading: false
+        }
     }
     componentDidMount(){
-        const id = this.props.match.params.id;
+        const participantId = this.props.match.params.id
         this.setState({
             loading: true
         })
-        fetch('https://api.backendless.com/51755EE6-B7E8-95DE-FF49-2B7776E58C00/D98F4083-FE53-95A0-FFA1-C38959E80100/data/participant/'
-            + id + '?loadRelations=lawsuit_id%2Clawsuit_id.document_id')
+
+            fetch('https://api.backendless.com/51755EE6-B7E8-95DE-FF49-2B7776E58C00/D98F4083-FE53-95A0-FFA1-C38959E80100/data/participant/'+
+               participantId + '?loadRelations=schedule%2Clawsuit_id%2Clawsuit_id.document_id')
             .then(response => response.json())
             .then(data =>
                 this.setState({
                     participant: data,
                     lawsuit: data.lawsuit_id[0],
                     document: data.lawsuit_id[0].document_id[0],
-                    loading: false
+                    schedule: data.schedule,
+                    loading:false
                 })
             )
-/*
-        console.log(this.props.state.lawsuit.objectId)
-        fetch('https://api.backendless.com/51755EE6-B7E8-95DE-FF49-2B7776E58C00/D98F4083-FE53-95A0-FFA1-C38959E80100/data/schedule?where=lawsuit_id%3D' + this.state.lawsuit.objectId)
-            .then(response => response.json())
-            .then(json => json.map(sched => sched))
-            .then(schedule =>
-                this.setState({
-                    schedule,
-                    loading: false
-                })
-            )*/
+
     }
+
     render() {
         const {
             participant,
             lawsuit,
             document,
+            schedule,
             loading
         } = this.state
+
+
         return (loading)
             ? <div>Loading Participant...<img src={imgLoading} className="img-loading" alt="loading" /></div>
             : <div>
+                <div>{'<'} Back to <Link to='/participants'>all participants</Link></div>
                 <h4>Court Participant <b>{participant.name}</b></h4>
                 <div className="row">
                     <div className="col-md-6 col-sm-6">
@@ -170,16 +166,20 @@ export class Participant extends Component {
                                 <td><b>Date</b></td>
                                 <td><b>Type</b></td>
                             </tr>
-                            {/*
+                            {
                                 schedule.map(function(x,i) {
+                                    var cDate = (new Date(x.process_date))
+                                    var formatDate = cDate.toLocaleDateString('en-GB') +
+                                        ' ' + cDate.getHours() + ':'
+                                    cDate.getMinutes() == '0' ? formatDate = formatDate + '00' : formatDate = formatDate + cDate.getMinutes()
                                     return (
                                         <tr key={i}>
-                                            <td>{x.process_date}</td>
+                                            <td>{formatDate}</td>
                                             <td>{x.type}</td>
                                         </tr>
                                     );
                                 })
-                            */}
+                            }
                             </tbody>
                         </table>
                     </div>
